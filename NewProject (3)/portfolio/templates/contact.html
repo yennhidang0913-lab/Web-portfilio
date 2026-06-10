@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Nguyễn Lê Phương Anh</title>
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">Phương Anh</a>
+        <a href="/">HOME</a>
+        <a href="/profile/">PROFILE</a>
+        <a href="/projects/">PROJECTS</a>
+        <a href="/skills/">SKILLS</a>
+        <a href="/blogs/">BLOG</a>
+        <a href="/contact/">CONTACT</a>
+    </nav>
+    <div class="container" style="max-width: 1100px; margin: 50px auto 50px; padding: 20px; display: flex; flex-direction: row; flex-wrap: nowrap; gap: 60px; align-items: stretch;">
+    <div style="flex: 1; min-width: 320px; display: flex; flex-direction: column; justify-content: center; padding: 20px 40px;">
+        <h1 style="font-size: 2.2rem; color: #2a7fa8; margin-bottom: 12px;">Let's connect</h1>
+        <p style="font-size: 1rem; margin-bottom: 24px; color: #555;">Bạn có thể liên hệ với mình qua:</p>
+        
+        <div style="font-size: 1rem; line-height: 2.2;">
+            <p>
+                <a href="mailto:nguyenlephuonganh@gmail.com" style="text-decoration:none; color:#555;">
+                    <i class="fas fa-envelope" style="margin-right: 10px; color: #2a7fa8;"></i> nguyenlephuonganh@gmail.com
+                </a>
+            </p>
+            <p><i class="fas fa-phone" style="margin-right: 10px; color: #2a7fa8;"></i> 0943084288</p>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #dde8f0; margin: 20px 0;">
+
+        <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/h%E1%BA%A3i-minh-ph%C6%B0%C6%A1ng-nguy%E1%BB%85n-12718936a/"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/haiminhphuongnhia-ui"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.facebook.com/nguyen.le.phuong.anh.873359"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/nglephuong_anh06/"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+    </div>
+
+        <div class="section-card" style="flex: 1; min-width: 280px; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <h2>Liên hệ với mình</h2>
+            <p style="margin-bottom: 20px;">Bạn có thể để lại tin nhắn, mình sẽ phản hồi sớm nhất có thể!</p>
+
+            {% if request.GET.success %}
+            <div style="background:#e6f4ea; color:#2d6a4f; padding:14px 20px; border-radius:12px; margin-bottom:20px;">
+                <i class="fas fa-check-circle"></i> Gửi thành công! Mình sẽ liên hệ lại sớm nhé 😊
+            </div>
+            {% endif %}
+            {% if error %}
+            <div style="background:#fde8e8; color:#a02020; padding:14px 20px; border-radius:12px; margin-bottom:16px;">
+                <i class="fas fa-exclamation-circle"></i> {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="POST" action="/contact/">
+                {% csrf_token %}
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-weight:600; margin-bottom:4px;">Họ tên</label>
+                    <input type="text" name="ho_ten" required style="width:100%; padding:10px 16px; border-radius:12px; border:1px solid #cde0ed; outline:none;">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-weight:600; margin-bottom:4px;">Email</label>
+                    <input type="email" name="email" required style="width:100%; padding:10px 16px; border-radius:12px; border:1px solid #cde0ed; outline:none;">
+                </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block; font-weight:600; margin-bottom:4px;">SDT</label>
+                    <input type="tel" name="sdt" required style="width:100%; padding:10px 16px; border-radius:12px; border:1px solid #cde0ed; outline:none;">
+                </div>
+                <div style="margin-bottom:20px;">
+                    <label style="display:block; font-weight:600; margin-bottom:4px;">Tin nhắn</label>
+                    <textarea name="tin_nhan" rows="3" required style="width:100%; padding:10px 16px; border-radius:12px; border:1px solid #cde0ed; outline:none; resize:vertical;"></textarea>
+                </div>
+                <button type="submit" class="button" style="width: 100%; cursor: pointer;">
+                    <i class="fas fa-paper-plane"></i> Gửi tin nhắn
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

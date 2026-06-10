@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Nguyễn Lê Phương Anh</title>
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Phương Anh</a>
+        <a href="/">HOME</a>
+        <a href="/profile/">PROFILE</a>
+        <a href="/projects/">PROJECTS</a>
+        <a href="/skills/">SKILLS</a>
+        <a href="/blogs/">BLOG</a>
+        <a href="/contact/">CONTACT</a>
+    </nav>
+
+    <div class="container">
+        <div class="projects-grid">
+            
+            {% for project in projects %}
+<div class="project-card">
+    
+    <div class="project-image">
+        {% if project.image %}
+            <img src="/static/portfolio/img/{{ project.image.name|cut:'projects/' }}" alt="{{ project.title }}">
+        {% else %}
+            <div style="width:100%; height:100%; background: #f0f4f8; display:flex; align-items:center; justify-content:center; color:#5c7b96; font-size:3rem;">
+                <i class="fas fa-image"></i>
+            </div>
+        {% endif %}
+            </div>
+
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-desc">{{ project.description }}</p>
+            
+            <p class="project-tech">
+                <strong>Công nghệ:</strong> {{ project.tech_stack }}
+            </p>
+
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
+                {% if project.demo_link %}
+                    <a href="{{ project.demo_link }}" target="_blank" class="btn btn-primary" style="padding: 10px 25px; border-radius: 12px; background: #2a7fa8; color: #fff; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> Demo
+                    </a>
+                {% endif %}
+                {% if project.github_link %}
+                    <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline" style="padding: 10px 25px; border-radius: 12px; border: 2px solid #2a7fa8; color: #2a7fa8; text-decoration: none;">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+        {% endfor %}
+            
+        </div>
+    </div>
+</body>
+</html> 
+

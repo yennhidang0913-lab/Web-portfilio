@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Blog</title>
+    <link rel="stylesheet" href="/static/portfolio/css/style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Phương Anh</a>
+        <a href="/">HOME</a>
+        <a href="/profile/">PROFILE</a>
+        <a href="/projects/">PROJECTS</a>
+        <a href="/skills/">SKILLS</a>
+        <a href="/blogs/">BLOG</a>
+        <a href="/contact/">CONTACT</a>
+    </nav>
+
+    <div class="container">
+        <div class="section-card">
+            <h2>Blog Cá Nhân</h2>
+            <hr>
+            
+            {% for blog in blogs %}
+            <div class="blog-item">
+                <h3>{{ blog.title }}</h3>
+                <small>Đăng ngày: {{ blog.date_posted|date:"d/m/Y H:i" }}</small>
+                <p>{{ blog.content }}</p>
+            </div>
+            {% empty %}
+            <p>Hiện tại chưa có bài viết nào.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

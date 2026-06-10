@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Kỹ Năng</title>
+    <link rel="stylesheet" href="/static/portfolio/css/style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Phương Anh</a>
+        <a href="/">HOME</a>
+        <a href="/profile/">PROFILE</a>
+        <a href="/projects/">PROJECTS</a>
+        <a href="/skills/">SKILLS</a>
+        <a href="/blogs/">BLOG</a>
+        <a href="/contact/">CONTACT</a>
+    </nav>
+
+    <div class="container">
+        <div class="section-card">
+            <h2>Kỹ Năng Của Tôi</h2>
+            <hr>
+            
+            <ul style="list-style: none; padding: 0;">
+                {% for skill in skills %}
+                <li class="skill-item">
+                    <div class="skill-title">
+                        <strong>{{ skill.name }}</strong>
+                    </div>
+                    <p>{{ skill.description }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

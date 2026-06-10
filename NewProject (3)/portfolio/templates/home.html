@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nguyễn Lê Phương Anh</title>
+    <link rel="stylesheet" href="/static/portfolio/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Phương Anh</a>
+        <a href="/">HOME</a>
+        <a href="/profile/">PROFILE</a>
+        <a href="/projects/">PROJECTS</a>
+        <a href="/skills/">SKILLS</a>
+        <a href="/blogs/">BLOG</a>
+        <a href="/contact/">CONTACT</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="greeting">Xin chào, mình là</p>
+                <h1 class="name">Nguyễn Lê<br>Phương Anh</h1>
+                <p class="tagline">
+                    {% for phrase in phrases %}
+                        <span>{{ phrase }}</span>{% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+                </p>
+                <div class="hero-buttons">
+                    <a href="/projects/" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Xem dự án
+                    </a>
+                    <a href="/static/portfolio/files/CV_PhuongAnh.pdf" class="btn btn-outline" download>
+                        <i class="fas fa-download"></i> Tải CV
+                    </a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/h%E1%BA%A3i-minh-ph%C6%B0%C6%A1ng-nguy%E1%BB%85n-12718936a/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/haiminhphuongnhia-ui" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.facebook.com/nguyen.le.phuong.anh.873359" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="mailto:phuonganh@email.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="img-wrapper">
+                    <img src="/static/portfolio/img/anh_the.jpg" alt="Phương Anh">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">3.7</span>
+            <span class="stat-label">GPA</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">{{ projects|length }}+</span>
+            <span class="stat-label">Dự án</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Chứng chỉ</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">1+</span>
+            <span class="stat-label">Năm kinh nghiệm</span>
+        </div>
+    </div>
+
+    <!-- Skill nổi bật -->
+    <div class="home-section">
+        <h2><i class="fas fa-star"></i> Kỹ năng nổi bật</h2>
+        <div class="skill-preview-grid">
+            <div class="skill-preview-card">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="skill-preview-card">
+                <i class="fas fa-database"></i>
+                <span>SQL</span>
+            </div>
+            <div class="skill-preview-card">
+                <i class="fas fa-file-word"></i>
+                <span>Word</span>
+            </div>
+            <div class="skill-preview-card">
+                <i class="fas fa-file-excel"></i>
+                <span>Excel</span>
+            </div>
+        </div>
+        <div class="view-all">
+            <a href="/skills/" class="btn btn-outline" style="margin-top:16px;">
+                Xem tất cả kỹ năng <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Project nổi bật từ DB -->
+    <div class="home-section">
+        <h2><i class="fas fa-laptop-code"></i> Dự án của tôi</h2>
+        <div class="project-preview-grid">
+            {% for project in projects %}
+            <div class="project-preview-card">
+                <div class="project-thumb-home">
+                    {% if project.image %}
+                        <img src="/static/portfolio/img/{{ project.image.name|cut:'projects/' }}" alt="{{ project.title }}">
+                    {% else %}
+                        <i class="fas fa-laptop-code"></i>
+                    {% endif %}
+                </div>
+                <div class="project-preview-body">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description|truncatechars:80 }}</p>
+                    <div class="tag-list">
+                        {% for tag in project.tech_list %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>Chưa có dự án nào.</p>
+            {% endfor %}
+        </div>
+        <div class="view-all">
+            <a href="/projects/" class="btn btn-outline" style="margin-top:16px;">
+                Xem tất cả dự án <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner">
+        <h3>Bạn muốn kết nối với mình?</h3>
+        <p>Mình luôn sẵn sàng lắng nghe các cơ hội hợp tác, thực tập hoặc chỉ đơn giản là trò chuyện!</p>
+        <a href="/contact/" class="btn-white">
+            <i class="fas fa-paper-plane"></i> Liên hệ ngay
+        </a>
+    </div>
+
+    
+
+</body>
+</html>
